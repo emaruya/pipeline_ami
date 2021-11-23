@@ -1,0 +1,47 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Clone repo') {
+            steps {
+                git url: 'https://github.com/emaruya/pipeline_ami.git', branch: 'main'
+            }
+        }
+        stage('Build EC2') {
+            steps {
+                sh "./deploy.sh"
+            }
+        }
+        // stage('Deploy DEV') {
+        //     steps {
+        //         sh "ls -la #08-jenkins/deploy-dev-java-app/deploy.sh"
+        //     }
+        // }
+        // stage('Test deploy dev') {
+        //     steps {
+        //         sh "ls -la #08-jenkins/deploy-dev-java-app/test.sh"
+        //     }
+        // }
+        // stage('Deploy Stage') {
+        //     steps {
+        //         sh "ls -la #08-jenkins/deploy-dev-java-app/deploy.sh"
+        //     }
+        // }
+        // stage('Test deploy stage') {
+        //     steps {
+        //         sh "ls -la #08-jenkins/deploy-dev-java-app/test.sh"
+        //     }
+        // }
+        // // manual step
+        // stage('Deploy Prod') {
+        //     steps {
+        //         sh "ls -la #08-jenkins/deploy-dev-java-app/deploy.sh"
+        //     }
+        // }
+        // stage('Test deploy prod') {
+        //     steps {
+        //         sh "ls -la #08-jenkins/deploy-dev-java-app/test.sh"
+        //     }
+        // }
+    }
+}
