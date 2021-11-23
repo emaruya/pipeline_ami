@@ -1,4 +1,4 @@
 #!/bin/bash
 
-cd pipeline_ami/terraform
+cd terraform
 terraform destroy -auto-approve

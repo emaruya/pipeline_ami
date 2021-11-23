@@ -1,19 +1,18 @@
 #!/bin/bash
-cd pipeline_ami/terraform
 
-uri=$(terraform output | grep public_ip | awk '{print $2;exit}' | sed -e "s/\",//g")
+kube_adm=$(kubeadm version)
 
-echo $uri
+regex_kube='kubeadm version:'
 
-body=$(curl "http://$uri")
+docker=$(kubeadm version)
 
-regex='Welcome to nginx!'
+regex_docker='Docker version'
 
-if [[ $body =~ $regex ]]
+if [[ $kube_adm =~ $regex_kube ] &&  [$docker =~ $regex_docker ]]
 then 
-    echo "::::: nginx está no ar :::::"
+    echo "::::: kubernetes e docker no ar :::::"
     exit 0
 else
-    echo "::::: nginx não está no ar :::::"
+    echo "::::: kubernetes e docker não estão no ar :::::"
     exit 1
 fi
