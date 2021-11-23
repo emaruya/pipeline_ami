@@ -15,7 +15,7 @@ resource "aws_instance" "dev_img_kubernetes" {
   tags = {
     Name = "dev-img-kubernetes"
   }
-  vpc_security_group_ids = [aws_security_group.acesso_jenkins_dev_img.id]
+  vpc_security_group_ids = [aws_security_group.acesso_img_kubernetes.id]
 }
 
 resource "aws_security_group" "acesso_img_kubernetes" {
