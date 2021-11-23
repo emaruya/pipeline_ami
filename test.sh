@@ -3,11 +3,15 @@ cd terraform
 
 uri=$(terraform output | grep public_ip | awk '{print $2;exit}' | sed -e "s/\",//g")
 
-kube_adm=$(ssh -i /home/ubuntu/.ssh/id_rsa ubuntu@$uri 'kubeadm version')
+kube_adm=$(ssh -i /var/lib/jenkins/.ssh/id_rsa ubuntu@$uri 'kubeadm version')
+
+echo $kube_adm
 
 regex_kube='kubeadm version:'
 
-docker=$(ssh -i /home/ubuntu/.ssh/id_rsa ubuntu@$uri 'docker --version')
+docker=$(ssh -i /var/lib/jenkins/.ssh/id_rsa ubuntu@$uri 'docker --version')
+
+echo $docker
 
 regex_docker='Docker version'
 
